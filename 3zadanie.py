@@ -1,24 +1,31 @@
-tutors = [
-    'Иван', 'Анастасия', 'Петр', 'Сергей',
-    'Дмитрий', 'Борис', 'Елена'
-]
-groups = [
-    '9А', '7В', '9Б', '9В', '8Б', '10А', '10Б', '9А'
-]
-def gen_of_people():
+with open(file="task_3_users.csv", mode="r", encoding="utf-8") as user_name:
+    user_list = []
+    for line in user_name:
+        user_list.append(line)
+with open(file="task_3_hobby.csv", mode="r", encoding="utf-8") as user_hobby:
+    hobby_list = []
+    for line in user_hobby:
+        hobby_list.append(line)
+
+hobby_username = dict()
+
+def hobby_user():
     i = 0
     j = 0
-    while i < len(groups):
-        if i >= len(tutors):
-              yield (None, groups[i])
-              i += 1
-              j += 1
-              break
+    while i < len(user_list):
+        if i >= len(hobby_list):
+            hobby_username[user_list[j]] = None
+            i += 1
+            j += 1
+            break
         else:
-            yield (tutors[j], groups[i])
+            hobby_username[user_list[j]] = hobby_list[i]
             i += 1
             j += 1
 
+user_list = [line.rstrip() for line in user_list]
+hobby_list = [line.rstrip() for line in hobby_list]
+hobby_user()
+print(hobby_username)
 
-for gen in gen_of_people():
-    print(gen)
+
